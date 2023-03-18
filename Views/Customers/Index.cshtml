@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Exercise1.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Customers</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet'</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <!-- test2.1 -->
+                <th>MembershipType</th>
+                <!-- ep30-->
+                <th>Discount Rate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+            <tr>
+                <!-- Ep43-->
+                <!--<td>@*Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null) *@</td>-->
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                <!-- test2.1, this is to add before second migration -->
+                <td>@customer.MembershipType.Name</td>
+                <!-- Ep30 the % at the end is a text we want to see after the value-->
+                <td>@customer.MembershipType.DiscountRate%</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+

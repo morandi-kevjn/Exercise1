@@ -1,0 +1,53 @@
+﻿<!-- ep 40 -->
+@*model Exercise1.Models.Customer*@
+@model Exercise1.ViewModels.CustomerFormViewModels
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+<!-- ep44 -->
+@*using (Html.BeginForm("Create", "Customers"))*@
+@using (Html.BeginForm("Save", "Customers"))
+    {
+        //  the code before does this: <form> </form>
+    <div class="form-group">
+        <!-- ep 40 -->
+        @*Html.LabelFor(m => m.Name) *@
+@* Html.TextBoxFor(m => m.Name, new { @class = "form-control" }) *@
+@Html.LabelFor(m => m.Customer.Name)
+@Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        </div>
+<div class="form-group">
+    <!-- ep39 -->
+    @*Html.LabelFor(m => m.BirthDate)*@
+    <!-- ep40 -->
+    <!-- <label for="Birthdate"> Date of Birth</label> -->
+    @* Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control" }) *@
+
+    @Html.LabelFor(m => m.Customer.BirthDate)
+    <!-- ep43 -->
+    @*Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })*@
+    @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:dd MMM yyyy}", new { @class = "form-control" })
+</div>
+<!-- ep40 -->
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+</div>
+<div class="checkbox">
+    <label>
+        <!-- ep40 -->
+        <!-- Subscribed to NewsLetter? @*Html.CheckBoxFor(m => m.IsSubscribedToNewsLetter) *@-->
+        Subscribed to NewsLetter? @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter)
+    </label>
+</div>
+<!-- ep44 -->
+@Html.HiddenFor(m => m.Customer.Id)
+<!-- ep41 -->
+<button type="submit" class="btn btn-primary">Save</button>
+}
+
+<!-- all this is added in ep 38-->

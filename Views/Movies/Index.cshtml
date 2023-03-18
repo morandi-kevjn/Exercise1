@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Exercise1.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+@if (!Model.Any())
+{
+    <p> we don't have any movies yet </p>
+}
+else 
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <!-- test2.3 -->
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+            <tr>
+                <!-- test2.3 -->
+                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                 <!-- Original -->
+                <td>@movie.Name</td>
+                <!-- test2.3 -->
+                <td>@movie.Genre.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<!-- Ok now I see the link but not the content, tommorow watch waht the hell goes wrong with links. -->
