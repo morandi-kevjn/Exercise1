@@ -1,7 +1,9 @@
 ﻿using Exercise1.Models;
 using Exercise1.ViewModels;
+using System; // test3 pt2
 using System.Collections.Generic;
 using System.Data.Entity; // ep30
+using System.Data.Entity.Validation; // test3 pt2
 using System.Linq;
 using System.Web.Mvc;
 
@@ -115,6 +117,7 @@ namespace Exercise1.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
             }
+            // it's not the same problem of movie, it gives back an error in Data
             _context.SaveChanges(); // -> save in the db
 
             return RedirectToAction("Index", "Customers");

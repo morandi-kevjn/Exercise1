@@ -30,7 +30,8 @@ namespace Exercise1.Models
         // [Display(Name = "Date of Birth")]
         // ep40
         [Display(Name = "Date of Birth")]
-
+        // test3 pt2
+        [DisplayFormat(DataFormatString = "{0:dddd, MMMM, d, yyyy}", ApplyFormatInEditMode = true)]
         // test2.2
         public DateTime? BirthDate { get; set; }
     }

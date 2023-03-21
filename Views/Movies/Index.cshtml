@@ -11,7 +11,7 @@
 {
     <p> we don't have any movies yet </p>
 }
-else 
+else
 {
     <table class="table table-bordered table-hover">
         <thead>
@@ -24,17 +24,20 @@ else
         <tbody>
             @foreach (var movie in Model)
             {
-            <tr>
-                <!-- test2.3 -->
-                <!-- <td>@*Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)*@</td> -->
-                <!-- test3 -->
-                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
-                <!-- Original -->
-                <!-- td>@*movie.Name*@</!--td> --> <!-- test3 -->
-                <!-- test2.3 -->
-                <td>@movie.Genre.Name</td>
-            </tr>
+                <tr>
+                    <!-- test2.3 -->
+                    <!-- <td>@*Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)*@</td> -->
+                    <!-- test3 -->
+                    <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
+                    <!-- Original -->
+                    <!-- td>@*movie.Name*@</!--td> --> <!-- test3 -->
+                    <!-- test2.3 -->
+                    <td>@movie.Genre.Name</td>
+                </tr>
             }
         </tbody>
     </table>
 }
+
+<!-- test3 pt2 -->
+<a href="@Url.Action("New","Movies")" class="btn btn-primary">New</a>

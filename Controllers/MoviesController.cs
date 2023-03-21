@@ -78,6 +78,7 @@ namespace Exercise1.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [HttpPost]
         public ActionResult Create(Movie movie)
         {
             _context.Movies.Add(movie);

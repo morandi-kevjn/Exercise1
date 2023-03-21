@@ -28,17 +28,19 @@ else
         <tbody>
             @foreach (var customer in Model)
             {
-            <tr>
-                <!-- Ep43-->
-                <!--<td>@*Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null) *@</td>-->
-                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
-                <!-- test2.1, this is to add before second migration -->
-                <td>@customer.MembershipType.Name</td>
-                <!-- Ep30 the % at the end is a text we want to see after the value-->
-                <td>@customer.MembershipType.DiscountRate%</td>
-            </tr>
+                <tr>
+                    <!-- Ep43-->
+                    <!--<td>@*Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null) *@</td>-->
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                    <!-- test2.1, this is to add before second migration -->
+                    <td>@customer.MembershipType.Name</td>
+                    <!-- Ep30 the % at the end is a text we want to see after the value-->
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                </tr>
             }
         </tbody>
     </table>
 }
 
+<!-- test3 pt2 -->
+<a href="@Url.Action("New","Customers")" class="btn btn-primary">New</a>
