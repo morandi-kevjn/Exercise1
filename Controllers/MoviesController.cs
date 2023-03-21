@@ -69,12 +69,12 @@ namespace Exercise1.Controllers
         {
             var genres = _context.Genres.ToList();
 
-            var ViewModel = new MovieFormViewModels
+            var viewModel = new MovieFormViewModels
             {
                 Genres = genres
             };
 
-            return View("MovieForm", ViewModel);
+            return View("MovieForm", viewModel);
         }
 
         public ActionResult Create(Movie movie)
@@ -89,6 +89,7 @@ namespace Exercise1.Controllers
         {
             if (movie.Id == 0)
             {
+                movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
             }
             else
@@ -97,14 +98,13 @@ namespace Exercise1.Controllers
 
                 movieInDb.Name = movie.Name;
                 movieInDb.GenreId = movie.GenreId;
-                movieInDb.DateAdded = movie.DateAdded;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.NumberInStock = movie.NumberInStock;
 
             }
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+            return RedirectToAction("Index", "Movies");
 
         }
 
