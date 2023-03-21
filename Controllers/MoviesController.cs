@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity; // test2.3
+using System.Data.Entity.Validation; // test3
 using System.Linq; // test2.3
 using System.Web.Mvc;
 using Exercise1.Models;
@@ -102,7 +103,15 @@ namespace Exercise1.Controllers
                 movieInDb.NumberInStock = movie.NumberInStock;
 
             }
-            _context.SaveChanges();
+            // there I have the problem, so I add the try and catch to handle exception and see it
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+            }
 
             return RedirectToAction("Index", "Movies");
 

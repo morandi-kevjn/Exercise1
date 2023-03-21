@@ -15,7 +15,7 @@ namespace Exercise1.Models
         public string Name { get; set; }
 
         // test2.3
-        [Required]
+        // [Required] test3
         public Genre Genre { get; set; }
 
         [Required]
