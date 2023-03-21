@@ -63,6 +63,67 @@ namespace Exercise1.Controllers
                 new Movie { Id = 1, Name = "Wall-e" }
             };
         }
+
+        // test3 <<
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+
+            var ViewModel = new MovieFormViewModels
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", ViewModel);
+        }
+
+        public ActionResult Create(Movie movie)
+        {
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.DateAdded = movie.DateAdded;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.NumberInStock = movie.NumberInStock;
+
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieFormViewModels
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", viewModel);
+        }
+        // >>
     }
 
     // Old:

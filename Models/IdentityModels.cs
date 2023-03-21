@@ -26,7 +26,10 @@ namespace Exercise1.Models
         // it is to do in the test2, I add this now.
         public DbSet<Movie> Movies { get; set; }
         // after added this two methods we have to -force again the migration
-        
+
+        // test3
+        public DbSet<Genre> Genres { get; set; }
+
         // ep 40
         public DbSet<MembershipType> MembershipTypes { get; set; }
 
@@ -39,6 +42,5 @@ namespace Exercise1.Models
         {
             return new ApplicationDbContext();
         }
-
     }
 }

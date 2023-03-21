@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Exercise1.Models;
+using Exercise1.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity; // ep30
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Exercise1.Models;
-using Exercise1.ViewModels;
 
 namespace Exercise1.Controllers
 {
@@ -139,5 +137,5 @@ namespace Exercise1.Controllers
             // return View("New", viewModel);
             return View("CustomerForm", viewModel);
         }
-    }   
+    }
 }

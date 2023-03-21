@@ -26,8 +26,10 @@ else
             {
             <tr>
                 <!-- test2.3 -->
-                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
-                 <!-- Original -->
+                <!-- <td>@*Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)*@</td> -->
+                <!-- test3 -->
+                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
+                <!-- Original -->
                 <td>@movie.Name</td>
                 <!-- test2.3 -->
                 <td>@movie.Genre.Name</td>
@@ -36,6 +38,3 @@ else
         </tbody>
     </table>
 }
-
-
-<!-- Ok now I see the link but not the content, tommorow watch waht the hell goes wrong with links. -->
