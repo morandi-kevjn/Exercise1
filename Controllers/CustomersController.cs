@@ -72,6 +72,8 @@ namespace Exercise1.Controllers
 
             var ViewModel = new CustomerFormViewModels
             {
+                // add customer ep55
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
@@ -99,6 +101,20 @@ namespace Exercise1.Controllers
         // ep44
         public ActionResult Save(Customer customer)
         {
+            // ep50
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModels
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                // Add the viewModel in the return of the view, without it gives the error of model = null
+               return View("CustomerForm", viewModel);
+                // return RedirectToAction("Index", "Customers");
+            }
+
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer); // -> save in the cache

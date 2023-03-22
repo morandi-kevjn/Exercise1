@@ -2,6 +2,8 @@
 @*model Exercise1.Models.Customer*@
 @model Exercise1.ViewModels.CustomerFormViewModels
 
+<!-- created in ep 38-->
+
 @{
     //ViewBag.Title = "New"; test3 pt2
     ViewBag.Title = Model.Title;
@@ -10,6 +12,9 @@
 
 <!-- test3 pt2 <h2>New Customer</h2> -->
 <h2>@Model.Title</h2>
+<!-- ep55 -->
+@*Html.ValidationSummary()*@ <!-- this will gives back the list of errors, the second one only a custom message and not display errors of id not valued, like CustomerId without the new Customer in CustomerController in the new function -->
+@Html.ValidationSummary(true, "Please fix the following errors.")
 <!-- ep44 -->
 @*using (Html.BeginForm("Create", "Customers"))*@
 @using (Html.BeginForm("Save", "Customers"))
@@ -21,6 +26,15 @@
         @* Html.TextBoxFor(m => m.Name, new { @class = "form-control" }) *@
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        <!-- ep50 -->
+        @Html.ValidationMessageFor(m => m.Customer.Name)
+    </div>
+    <!-- ep40 -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        <!-- ep50 -->
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="form-group">
         <!-- ep39 -->
@@ -28,17 +42,14 @@
         <!-- ep40 -->
         <!-- <label for="Birthdate"> Date of Birth</label> -->
         @* Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control" }) *@
-
         @Html.LabelFor(m => m.Customer.BirthDate)
         <!-- ep43 -->
         @*Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })*@
         @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:dd MMM yyyy}", new { @class = "form-control" })
+        <!-- ep50 -->
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
     </div>
-    <!-- ep40 -->
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-    </div>
+    <!-- ep55 place MembershipType before BirthDate, in old version was BirthDate first -->
     <div class="checkbox">
         <label>
             <!-- ep40 -->
@@ -51,5 +62,3 @@
     <!-- ep41 -->
     <button type="submit" class="btn btn-primary">Save</button>
 }
-
-<!-- all this is added in ep 38-->

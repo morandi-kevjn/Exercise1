@@ -12,7 +12,9 @@ namespace Exercise1.Models
         public int Id { get; set; }
 
         // this syntax is the Overriding Conventions and it is from ep28, it says that is required and max length 255.
-        [Required]
+        // ep52
+        [Required(ErrorMessage = "Please enter customer's name.")]
+        // [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -32,6 +34,8 @@ namespace Exercise1.Models
         [Display(Name = "Date of Birth")]
         // test3 pt2
         [DisplayFormat(DataFormatString = "{0:dddd, MMMM, d, yyyy}", ApplyFormatInEditMode = true)]
+        // ep53
+        [Min18YearsIfAMember]
         // test2.2
         public DateTime? BirthDate { get; set; }
     }

@@ -27,6 +27,9 @@ namespace Exercise1.Models
 
         public byte DiscountRate { get; set; }
 
+        // ep54
+        public static readonly byte Unknown = 0;
+        public static readonly byte PayAsYouGo = 1;
 
     }
 }

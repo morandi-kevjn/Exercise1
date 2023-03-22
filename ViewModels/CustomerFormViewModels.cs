@@ -21,11 +21,11 @@ namespace Exercise1.ViewModels
             get
             {
                 if (Customer != null && Customer.Id != 0)
-                {
-                    return "Edit Customer";
-                }
+                 {
+                     return "Edit Customer";
+                 }
 
-                return "New Customer";
+                 return "New Customer";
             }
         }
     }
