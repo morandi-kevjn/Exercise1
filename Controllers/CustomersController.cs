@@ -98,6 +98,8 @@ namespace Exercise1.Controllers
             // return View();
         }
 
+        // ep58
+        [ValidateAntiForgeryToken]
         // ep44
         public ActionResult Save(Customer customer)
         {

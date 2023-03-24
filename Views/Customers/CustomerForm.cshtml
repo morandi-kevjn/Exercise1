@@ -59,6 +59,14 @@
     </div>
     <!-- ep44 -->
     @Html.HiddenFor(m => m.Customer.Id)
+    <!-- ep57 -->
+    @Html.AntiForgeryToken()
     <!-- ep41 -->
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+<!-- ep56 -->
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

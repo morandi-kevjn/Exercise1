@@ -72,6 +72,9 @@ namespace Exercise1.Controllers
 
             var viewModel = new MovieFormViewModels
             {
+                // ep60 add Movie to not have errors in new methods with id equals to null, like customers.
+                // test4
+                // Movie = new Movie(),
                 Genres = genres
             };
 
@@ -86,7 +89,8 @@ namespace Exercise1.Controllers
 
             return RedirectToAction("Index", "Movies");
         }
-
+        // ep60
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (movie.Id == 0)
@@ -124,10 +128,12 @@ namespace Exercise1.Controllers
 
             if (movie == null)
                 return HttpNotFound();
-
-            var viewModel = new MovieFormViewModels
+            // ep60 test
+            // var viewModel = new MovieFormViewModels
+            var viewModel = new MovieFormViewModels(movie)
             {
-                Movie = movie,
+                // ep60 test
+                // Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
