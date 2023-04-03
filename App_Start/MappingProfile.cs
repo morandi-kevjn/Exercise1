@@ -17,12 +17,11 @@ namespace Exercise1.App_Start
         {
             // Automapper:  Mapper.CreateMap<Models.Customer, Dtos.CustomerDto>(); solution if I don't use the librarys
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<MovieDto, Movie>(); // error -> this is for Movies not Customers
             
             
-            // Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
-            // Mapper.CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore()); -> we don't have nw the MovieDto
-            // >>>
+            Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore()); // it used before test5
+            Mapper.CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore()); // test5
 
         }
     }

@@ -77,16 +77,19 @@ namespace Exercise1.Controllers.Api
         // PUT /api/customers/1
         // I can return void or a customer
         // public void UpdateCustomer(int id, Customer customer) ep68
+        // public void UpdateCustomer(int id, CustomerDto customerDto) // test5
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
-            if(!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            if (!ModelState.IsValid)
+                return BadRequest(); // test5
+                // throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound(); // test5
+                // throw new HttpResponseException(HttpStatusCode.NotFound);
 
             // ep 68
             // Mapper.Map<CustomerDto, Customer>(customerDto, customerInDb);
@@ -100,18 +103,26 @@ namespace Exercise1.Controllers.Api
             */
 
             _context.SaveChanges();
+
+            // test 5
+            return Ok();
         }
 
         // DELETE /api/customers/1
-        public void DeleteCustomer(int id)
+        // public void DeleteCustomer(int id) test5
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
+                // throw new HttpResponseException(HttpStatusCode.NotFound); test5
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            // test5
+            return Ok();
         }
 
         // >>>
