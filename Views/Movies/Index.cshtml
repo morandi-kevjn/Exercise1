@@ -13,12 +13,15 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <!-- added id to table -->
+    <table id="movies" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Movie</th>
                 <!-- test2.3 -->
                 <th>Genre</th>
+                <!-- ep75 pt2 -->
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +36,10 @@ else
                     <!-- td>@*movie.Name*@</!--td> --> <!-- test3 -->
                     <!-- test2.3 -->
                     <td>@movie.Genre.Name</td>
+                    <!-- ep75 pt2 -->
+                    <td>
+                        <button data-movie-id="@movie.Id" class="btn-outline-light js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -41,3 +48,25 @@ else
 
 <!-- test3 pt2 -->
 <a href="@Url.Action("New","Movies")" class="btn btn-primary">New</a>
+
+<!-- ep75 pt2 -->
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on("click", function (e) {
+                var button = $(this);
+                if (confirm("Are you sure you want to delete this movie?")) {
+                    $.ajax({
+                        url: "/api/movies/" + button.attr("data-movie-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parents("tr").remove();
+                            // console.log("Success");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -20,7 +20,9 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+        @*Scripts.Render("~/bundles/jquery")*@ <!-- ep78 -->
     @*@Scripts.Render("~/bundles/bootstrap") -> dava un null exception, nel caso mi servisse boostrap posso linkarlo nel html*@
+    <!-- ep78 changed the ~/bundles/bootstrap to ~/bundles/lib -->
     @RenderSection("scripts", required: false)
 </body>
 </html>
