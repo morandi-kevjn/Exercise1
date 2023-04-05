@@ -8,10 +8,11 @@ namespace Exercise1
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            /*  bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js")); */ 
-            // ep78
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+            
+            // ep78 with this I have the server error in '/' Appplication
+            /* bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
@@ -19,7 +20,7 @@ namespace Exercise1
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/jquery.boostrap.js"
                         ));
-
+            */
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
