@@ -18,11 +18,11 @@ namespace Exercise1.App_Start
             // Automapper:  Mapper.CreateMap<Models.Customer, Dtos.CustomerDto>(); solution if I don't use the librarys
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<MovieDto, Movie>(); // error -> this is for Movies not Customers
-            
+            // ep80
+            Mapper.CreateMap<MembershipTypeDto, MembershipType>();
             
             Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore()); // it used before test5
             Mapper.CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore()); // test5
-
         }
     }
 }

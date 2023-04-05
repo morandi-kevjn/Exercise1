@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http; // add ep65
+using System.Data.Entity; // add ep80
 using Exercise1.Dtos; // add ep68
 using AutoMapper; // add ep68
 
@@ -27,7 +28,11 @@ namespace Exercise1.Controllers.Api
         public IEnumerable<CustomerDto> GetCustomers()
         {
             // return _context.Customers.ToList(); ep68
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            // return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>); ep80
+            return _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
         }
 
         // GET /api/customers/1

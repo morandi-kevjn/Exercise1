@@ -24,6 +24,9 @@ namespace Exercise1.Dtos
         // questo era stato tolto ma serviva ep68
         public byte MembershipTypeId { get; set; }
 
+        // add in ep80
+        public MembershipTypeDto MembershipType { get; set; }
+
         // ep70
         /*
         [Min18YearsIfAMember]
