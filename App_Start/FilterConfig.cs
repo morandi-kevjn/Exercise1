@@ -8,6 +8,9 @@ namespace Exercise1
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            // ep91 Log In Required for everything
+            filters.Add(new AuthorizeAttribute());
+        
         }
     }
 }

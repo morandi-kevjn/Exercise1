@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Exercise1.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Exercise1.Controllers
 {
@@ -155,7 +156,14 @@ namespace Exercise1.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //Temp code ep92 to give to an user the manager role
+                    /* 
+                     * var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                     * var roleManager = new RoleManager<IdentityRole>(roleStore);
+                     * await roleManager.CreateAsync(new IdentityRole("CanManageMovie"));
+                     * await UserManager.AddToRoleAsync(user.Id, "CanManageMovie");
+                     * 
+                    */
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

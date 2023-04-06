@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace Exercise1.Controllers
 {
+    // ep91 Log In not needed there
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
